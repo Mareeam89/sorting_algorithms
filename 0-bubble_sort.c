@@ -1,35 +1,28 @@
 #include "sort.h"
 
 /**
- * selection_sort - choose the min number and swap between the initial
- *
- * @array: array of integers
- * @size: size of the array
- * Return: void
+ *bubble_sort - sorts an array of int in ascending orde
+ *@array: array of numbers
+ *@size: Size of array
  */
-void selection_sort(int *array, size_t size)
+void bubble_sort(int *array, size_t size)
 {
-	unsigned int i, j, index, swap;
-	int little;
+	size_t j, i;
+	int num;
 
-	if (size <= 1)
+	if (array == NULL  || size < 2)
 		return;
-
-	for (j = 0; j < size; j++)
+	for (i = 0; i < size - 1; i++)
 	{
-		/* step1: while through the array to find the small number */
-		swap = 0;
-		little = array[j];
-		for (i = j; i < size; i++)
+		for (j = 0; j < size - i - 1; j++)
 		{
-			if (array[i] < little)
-				little = array[i], index = i, swap = 1;
-		}
-		/* swap */
-		if (swap == 1)
-		{
-			array[index] = array[j];
-			array[j] = little;
-			print_array(array, size);
+			if (array[j] > array[j + 1])
+			{
+				num = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = num;
+				print_array(array, size);
+			}
 		}
 	}
+}
