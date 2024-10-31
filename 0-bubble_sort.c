@@ -1,61 +1,35 @@
 #include "sort.h"
-<<<<<<< HEAD
 
 /**
- *bubble_sort - sorts an array of int in ascending orde
- *@array: array of numbers
- *@size: Size of array
- */
-void bubble_sort(int *array, size_t size)
-{
-	size_t j, i;
-	int num;
-
-	if (array == NULL  || size < 2)
-		return;
-	for (i = 0; i < size - 1; i++)
-	{
-		for (j = 0; j < size - i - 1; j++)
-		{
-			if (array[j] > array[j + 1])
-			{
-				num = array[j];
-				array[j] = array[j + 1];
-				array[j + 1] = num;
-				print_array(array, size);
-			}
-		}
-=======
-/**
- * bubble_sort - sort an int array with bubble_sort
- * @array: array of integers of size
- * @size: the sze of the array
+ * selection_sort - choose the min number and swap between the initial
  *
+ * @array: array of integers
+ * @size: size of the array
+ * Return: void
  */
-void bubble_sort(int *array, size_t size)
+void selection_sort(int *array, size_t size)
 {
-	/* declarations */
-	int temp;
-	size_t i, j;
+	unsigned int i, j, index, swap;
+	int little;
 
-	/* check for both array & size */
-	if (!(array && size))
+	if (size <= 1)
 		return;
 
-	/* let's sort this thing */
-	for (i = 0; i < size;)
+	for (j = 0; j < size; j++)
 	{
-		for (j = 0; j < size - 1; j++)
+		/* step1: while through the array to find the small number */
+		swap = 0;
+		little = array[j];
+		for (i = j; i < size; i++)
 		{
-			if (array[j] > array[j + 1])
-			{
-				temp = array[j];
-				array[j] = array[j + 1];
-				array[j + 1] = temp;
-				print_array(array, size);
-			}
+			if (array[i] < little)
+				little = array[i], index = i, swap = 1;
 		}
-		i++;
->>>>>>> 05e0411aea3d55c5f3af05eb23078fd12a963ceb
+		/* swap */
+		if (swap == 1)
+		{
+			array[index] = array[j];
+			array[j] = little;
+			print_array(array, size);
+		}
 	}
-}
